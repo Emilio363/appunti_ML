@@ -1,0 +1,342 @@
+\documentclass[a4paper; 11pt oneside]{book}
+\usepackage[italian]{babel}
+\usepackage[margin = 1.0 in]{geometry}
+
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\graphicspath{{imagine/}}
+\title{Introduzione al Machine Learning}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Supervised}
+\section{Introduzione}
+% baias, variance tradeoff, loss
+\section{Classificatori}
+  \subsection{K-nn}
+  \subsection{Perceptron}
+  \subsection{SVM}
+  \subsection{Logistic regression}
+
+\section{Regressioni}
+  \subsection{Linear regression}
+  \subsection{Ridge regression}
+  \subsection{Poisson regression}
+  \subsection{Generalized Linear Model}
+
+\section{Modelli bayesiani}
+    \subsection{naive bayes}
+    \subsection{Bayesian Belief Networks}
+        A partire dai miei dati, traccio manualmente un grafo tra tutte le mie features a seconda delle conoscenze.
+        Il primo passo è di calcolare, per ogni nodo del grafo, le probabilità
+
+\section{guida pratica all'ottimizzazione del machine learning}
+    \subsection{gradiend descend}
+    \subsection{adagrad}
+    \subsection{Loss}
+    \begin{itemize}
+        \item koulback-Leibler divergens
+    \end{itemize}
+    \subsection{Regularization}
+    \subsection{Bias-Variance tradeoff}
+
+\section{Kernel Methods}
+
+\section{Gaussian Processes}
+
+\section{KD-Trees}
+    \subsection{KNN-tree}
+    \subsection{Ball-tree}
+    \subsection{Decision-tree}
+
+\section{Bagging}
+
+\section{Busting}
+
+\section{Neural Network}
+    \subsection{Shallow Network}
+    \subsection{Deep Network}
+    \subsection{Back propagation}
+    \subsection{Convolutional Network}
+    \subsection{Resnet}
+    \subsection{Interpretability}
+
+\chapter{Un-supervised Learning}
+    Fino ad ora abbiamo trattato di algoritmi che cercano di mimare imparare la funzione che ha generato i dati e quindi
+    riuscire a predirre quale sarà la label di un nuovo dato.
+    L'obbiettivo dell'unsupervised learning è invece quello di riuscire ad imparare qualcosa di nuovo dai dati. Qualcosa
+    che è intrinseco nei dati ma non facilmente osservabile dall'uomo.
+
+\section{Manifold Learning}
+
+        Per tutti gli algoritmi successivi, l'idea è quella di trovare una struttura tra i dati, che ci permetta di
+        rappresentarli con meno feature. In questa maniera possiamo renderli più comprensibili all'umano o più facili 
+        da manipolare per un altro algoritmo.
+
+    \subsection{Intrinsinc dimension estimation}
+
+    \subsection{Principal Component Analysis}
+    Immaginniamo di avere un dataset $\lbrace x_i\rbrace _{i=1}^n\in \mathbb{R}^d$ dove ogni $x_i$ viene generato da un vettore $u$
+    con la relazione $x_i = \alpha_i u$. Allora ogni nostro punto del dataset può essere riassunto con il solo 
+    parametro $\alpha_i$. In questo caso per quanto possa essere alta la dimesione dello spazio $\mathbb{R}^b$, i nostri
+    dati vivono in uno spazio 1-dimensionale. La stessa cosa avverrebbe anche se aggiungessimo del piccolo rumore 
+    ai dati che porterebbe a vedere una nuvola più che una linea retta nello spazio.
+
+
+    Il primo importante passo da fare è sottrarre ad ogni dato la media del dataset, questo ci serve perché se i nostri 
+    dati sono tutti concentrati lontano dall'origine, potremmo riassumerli tutti con il loro punto medio. 
+    Come se fossimo sulla chiama di una montagna e guardassimo delle persone nella piazza del paese. 
+    Potremmo dire che con buona approssimazione sono tutte vicino alla fontana, se invece ci troviamo in piazza vediamo 
+    come un gruppo è accanto al lavatoio a fare il bucato mentre l'altro è attorno alla bottega del falegname. \newline
+    La seconda operazione da fare è dividere ogni feature per la sua varianza. Questo ci serve per evitare che feature molto
+    grandi influenzino erroneamente le nostre analisi. Se ci sono due file per il rancio nella legione, e queste linee 
+    si presentassero più lunghe del normale, il modo più immediato che abbiamo per identificare una persona è vedere 
+    quanto questa sia distante dalla pentola, ma questo non ci permetterebbe di più di osservare in quale fila era prima.
+    Se invece guardiamo bene le file, faremmo bene a dire da che parte della staccionata si trova ogni persona.
+
+    Sia $\mu = \frac{1}{n}\displaystyle\sum_{i} x_i$ la media dei nostri dati e $\sigma = $
+
+    Ci aspettiamo che se potessimo vedere i dati nella loro interezza, possiamo notare come questi possano essere
+    disegnati come un iperpiano in quello spazio alto dimensionale. \newline
+    Per identificare quale sia questo iperpiano, vogliamo vedere se ci siano due feature correlate. Così se varia
+    una allora varia anche la seconda e quindi possiamo eliminare una delle due perché non aggiunge informazione.        
+    
+    PCA diventa utile se viene applicato su dataset normalizzati.
+    
+    scree test: serve per valutare quali autovalori siano i più significativi da tenere. 
+
+    Se plotto i miei autovalori e vedo in un punto un salto del loro valore, prendo tutti gli autovalori precedenti al salto che spiegheranno la 
+    maggior parte della varianza dei dati.
+
+    Percentuale di Explaned Variance $\displaystyle\frac{\sum_{j=0}^d\lambda_j}{\sum_{i=0}^D\lambda_i}$
+    
+    \subsection{K-PCA}
+    \subsection{t-SNE}
+    \subsection{UMAP} %TODO indtrinsinc dimension estimation
+    
+
+    \subsection{Distanze}
+    Le distanze ci aiutano a valutare diversi algoritmi. 
+    Si vede come al variare della distanza usata, anche l'algoritmo che la utilizza varia il risultato
+    \begin{itemize}
+        \item Distanza di Minowski 
+        \item Coeficiente di correlazione di Pearson
+        \item Distanza di Mahalanobis: invariante per trasformazioni lineari delle coordinate
+        \item Similarità del coseno
+        \item Jaccard Distance
+        \item Distanza di hamming
+        \item Distanza geodesica
+    \end{itemize}
+    \subsection{Multidinensional Scaling}
+        Vogliamo proiettare i dati in uno spazio a dimensionalità più bassa, mantendendo le distanze.
+        Fondamentale è lo stress che misura quale sia la differenza tra le distanze prima e dopo la proiezione dei dati.
+        Ovviamente l'obbiettivo dell'algoritmo è minimizzare lo stress riducendo la dimensionalità dei dati.
+    \subsection{ISOMAP}
+        ISOMAP è un algoritmo che costruisce un grafo dei miei dati tramite knn. Quindi se trovo due punti molto vicini
+        questi saranno connessi. \newline
+        Per valuta la distanza tra due punti, vedo quanti archi devo percorrere al'interno del grafo per passare
+        da un punto all'altro. Questa è chiamata distanza geodesica.
+        Quindi il grafo che ho creato è la mia rappresentazione a dimensionalità ridotta dei miei dati e la distanza
+        geodesica viene mantenuta
+
+\section{Densinity  estimation}
+	\subsection{Histograms}
+    \subsection{Kernel density estimation}
+        L'idea è quella di stimare la distribuzione di probabilità del nostro dataset. L'approccio che vediamo è quello di 
+        porre intorno a ogni punto una gausiana e poi sommarle tra di loro
+        $$P(X) = \frac{1}{n}\displaystyle\sum_{i=1}^n\frac{1}{h\sqrt{2\pi}}e^{-\left(\frac{x-x_i}{h}\right)^2}$$
+        $h = n^{-\frac{1}{4}+d}$
+    
+    \subsection{K-nn density estimator}
+    Vogliamo valutare la nostra funzione di densità a partire dai vicini di un punto dato. Quindi deciso un $K$, valuto 
+    $r_k$ come la palla che comprende il k-esimo vicino al punto. Si intende che la palla è della dimensione dei dati.\newline
+    Stimiamo quindi la nostra densità come:$$P(X) = \frac{K}{nr_x^d}$$
+    
+    Il problema di questo metodo è che soffre moltissimo della course of dimensionality che ci porta, ad alte dimensionalità
+    ad avere palle di dimensioni molto simili tra loro.
+
+\section{Clustering}
+    L'obbiettivo è di ragruppare punti assieme secondo un criterio
+
+
+\subsection{Classical clustering}
+    
+    \subsubsection{K-means clustering}
+    A priori, decidiamo che secondo noi nel nostro dataset ci sono $k$ cluster. Quindi creiamo $k$ punti casuali nel nostro spazio
+    che vengono chiamati centroidi.
+    Adesso assegno ogni punti al centroide più vicino e creo una prima ipotesi di cluster. Quindi ricalcolo i centroidi come la media 
+    di ogni cluster.
+
+    problemi:
+    sensibile all'inizializzazione -> k-means
+    l'utente deve fornire k -> scree test. guardo il grafico e vedo dove sta il gomito
+    sensibile agli outliars -> k-medioids
+    funziona solo per cluster sferici -> Kernel k-means
+    
+    \subsubsection{fuzzy k-means}
+    Invece di assegnare direttamente un dato a un certo cluster, salvo per ogni dato la probabilità che appartenenza a ogni cluster.
+    In questa maniera possiamo avere un risultato pi+ interpretabile e vedere quanto possiamo fidarci del risultato.
+    la loss è data da $\mathbb{l}(\mathbb{U}) = \displaystyle\sum_{l = 1}^{k}\sum_{i=1}^{n} u_{il}$
+
+            \begin{itemize}
+            
+            \item 1. Il Vincolo di Appartenenza
+            Per ogni punto dati $i$, la somma dei suoi gradi di appartenenza a tutti i $k$ cluster deve essere pari a 1:
+            $$\sum_{l=1}^{k} u_{il} = 1$$.
+
+            \item 2. La Funzione Obiettivo (Loss)
+            L'obiettivo dell'algoritmo è minimizzare una funzione di costo che pesa le distanze euclidee tra i punti $x_i$ e i centri dei cluster $c_l$ in base al grado di appartenenza:
+            $$O(\mathbb{U}) = \sum_{l=1}^{k} \sum_{i=1}^{n} u_{il}^m \|x_i - c_l\|^2$$.
+
+            In questa formula:
+            *   **$n$** è il numero totale di punti.
+            *   **$m$** è il **parametro di "fuzzificazione"** (tipicamente $m=2$). Questo valore controlla quanto deve essere "sfumata" l'assegnazione: se $m$ tende a infinito, l'algoritmo tende a comportarsi come il k-means rigido.
+
+            \item 3. Regole di Aggiornamento (L'Algoritmo)
+            L'algoritmo procede iterativamente partendo da un'inizializzazione casuale della matrice di appartenenza $\mathbb{U}$ e aggiornando alternativamente i centri e i gradi di appartenenza:
+
+            *   **Aggiornamento dei Centri ($c_l$):** Ogni centro viene calcolato come una media di tutti i punti del dataset, pesata per il loro grado di appartenenza elevato a $m$:
+            $$c_l = \frac{\sum_{i=1}^{n} u_{il}^m x_i}{\sum_{i=1}^{n} u_{il}^m}$$.
+
+            *   **Aggiornamento delle Appartenenze ($u_{ij}$):** Il nuovo grado di appartenenza di un punto $i$ al cluster $j$ viene ricalcolato in base alla distanza relativa rispetto a tutti gli altri centri:
+            $$u_{ij} = \frac{1}{\sum_{l=1}^{k} \left( \frac{\|x_i - c_j\|}{\|x_i - c_l\|} \right)^{2/(m-1)}}$$.
+
+            Il processo si ripete finché la variazione della matrice $\mathbb{U}$ tra due iterazioni non scende al di sotto di una soglia prefissata (convergenza).
+
+            \item Vantaggi e Limitazioni
+            *   **Flessibilità:** È particolarmente utile per dati che si trovano "a metà strada" tra due centri, poiché permette di esprimere l'incertezza dell'assegnazione.
+            *   **Problemi ereditati dal k-means:** Rimane sensibile alla scelta iniziale dei parametri, al numero di cluster $k$ scelto a priori e alla presenza di outlier, che possono spostare i centroidi in modo significativo.
+	\end{itemize}
+    \subsubsection{k-medioids} uso i punti del dataset come centroidi
+
+    \subsubsection{k-means ++}
+    Scelgo random un punto del dataset. Tutti gli altri punti del dataset potrebbero diventare dei nuovi centroidi con probabilità
+    proporzionale a $P \propto \left(\min ||X-X_i||_2\right)^2$ dove $X$ è il punto che stiamo considerando e $X_i$ sono tutti i centroidi
+    già selezionati.
+    
+    \subsubsection{Kernel k-means}
+
+    \subsubsection{Hierarchical Clustering}
+    Il **clustering gerarchico** è una tecnica di apprendimento non supervisionato che organizza i dati in una struttura a livelli, 
+    producendo rappresentazioni in cui i cluster a ogni livello sono creati fondendo (o dividendo) i gruppi del livello precedente.
+    A differenza del k-means, non richiede di specificare a priori il numero di cluster e il risultato viene solitamente visualizzato 
+    tramite un **dendrogramma**, un albero binario dove l'altezza dei nodi è proporzionale alla dissimilarità tra i gruppi fusi.
+
+    Esistono due approcci principali:
+    *   **Agglomerativo (Bottom-up):** Si parte con ogni punto come un singolo cluster e, a ogni passaggio, si fondono i due cluster più vicini 
+    fino a ottenerne uno solo che comprende tutto il dataset. È il metodo più utilizzato per via della sua minore complessità 
+    computazionale rispetto al divisivo.
+    *   **Divisivo (Top-down):** Si parte da un unico cluster globale e lo si divide ricorsivamente in sotto-gruppi sempre più piccoli.
+	
+	\begin{itemize}
+	
+	
+    \item Criteri di Collegamento (Linkage)
+    Il funzionamento dell'algoritmo dipende da come viene definita la distanza tra due gruppi di osservazioni ($G$ e $H$). 
+    Le formule principali sono:
+
+    1.  **Single Linkage (Nearest Neighbor):** La distanza tra due cluster come la minima distanza tra i due punti più vicini dei due cluster:
+        $$d_{SL}(G,H) = \min_{i \in G, i' \in H} d_{ii'}$$
+        Questo metodo può gestire forme non ellittiche ma è sensibile al rumore e tende a creare cluster allungati (fenomeno del *chaining*).
+
+    2.  **Complete Linkage (Furthest Neighbor):** La distanza è definita la massima distanza tra i due punti più vicini dei due cluster:
+        $$d_{CL}(G,H) = \max_{i \in G, i' \in H} d_{ii'}$$
+        Tende a produrre cluster più compatti e bilanciati, ma può forzare strutture che non esistono nei dati.
+
+    3.  **Group Average Linkage:** Utilizza la distanza media tra tutti i punti dei due cluster:
+    valuto la distanza come la distanza tra i centroidi dei vari clusters. In questo caso un problema che occorre è che,
+    se in tutti gli altri casi la distanza tra cluster può solo aumentare, dato che il nuovo centroiede prima non esisteva,
+    è possibile che questo compaia più vicino di prima. E questo ad Alex non piace
+        $$d_{GA}(G,H) = \frac{1}{N_G N_H} \sum_{i \in G} \sum_{i' \in H} d_{ii'}$$
+        Rappresenta un compromesso tra i due estremi precedenti.
+
+    4.  **Distanza di Ward:** Considera l'aumento della varianza totale all'interno dei cluster (somma dei quadrati) derivante 
+    dalla loro fusione:
+    La distanza tra due cluster è valutata come la distanza tra i due centroidi moltiplicata per il fattore di Ward. La potenzialità
+    è che noi possiamo calcolare la distanza tra i cluster in maniera ricorsiva. Inoltre i coefficienti permettono alle distanze di essere
+    crescenti e quindi di rispettare l'assunto di base del clustering gerarchico.
+        $$D(C_i, C_j) = \frac{2 n_i n_j}{n_i + n_j} D(r_i - r_j)^2$$
+        $$D(C_{i\cup j}, C_k) = \frac{ n_i n_k}{n_i + n_j + n_k} D(C_i, C_k) + \frac{ n_j n_k}{n_i + n_j + n_k} D(C_j, C_k) - \frac{ n_k}{n_i + n_j + n_k} D(C_i, C_j)$$
+        Dove $n_i\; n_j$ sono i numeri di punti dei due cluster e $r_i$ e $r_j$ sono i centroidi. È spesso preferito perché meno suscettibile agli outlier e tende a creare 
+        cluster di forma sferica.
+
+    \item Validazione
+    Per valutare quanto la struttura gerarchica del dendrogramma rappresenti fedelmente le distanze originali tra i dati, si utilizza 
+    spesso il **coefficiente di correlazione cofenetica**, che misura la correlazione tra le distanze originali e quelle di fusione 
+    riportate nell'albero.
+	\end{itemize}
+\subsection{Modern clustering}
+
+    \subsubsection{Gaussian Mixtures}
+        Partiamo dall'idea del Fuzzy, vogliamo quindi creare una matrice che mi lega i dati e quanto è probabile che appartengano a un certo cluster.
+        Nel nostro caso i clusters sono rappresentati da gausiane di media e varianza ignote. Per trovare un fit adatto delle nostre gausiane Partiamo
+        da una stima di quanti punti appartengono ad ogni cluster.
+        $$N_k =  $$
+    \subsubsection{DBSCAN}
+        Per prima cosa definiamo due parametri del nostro clustering: $\epsilon$, che indica il raggio che andremo ad utilizare, e $MinPts$ che indica il minimo dei punti
+        che accettiamo nella nostra frontiera.
+
+        Definiamo:
+        \begin{itemize}
+            \item \b{Core point}: un punto che nel suo \b{vicinato}, entro $\epsilon$ di distanza, ha più di $MinPts$ punti
+            \item \b{Border point}: un punto che nel suo vicinato ha almeno un Core point.
+        \end{itemize}
+
+        Algoritmo:
+        \begin{itemize}
+            \item 
+        \end{itemize}
+
+    \subsubsection{Density Peaks}
+    Quale è il punto più alto della terra? \newline
+    L'Everest \newline
+    E qual'è il secondo punto più alto della terra? \newline
+    Il K2 mi risponderete. \newline
+    E invece no, è un millimitro più a destra della cima del monte Everest; ma questo non ci interessa, vogliamo trovare quali 
+    sono i punti più alti distanti.
+
+    Stimo la densità di ogni punto 
+
+\subsection{Cluster validation}
+    In questo capitolo vedremo diverse tecniche per valutare la qualità del nostro clustering.
+
+    \subsubsection{MSE}
+        Definiamo il MSE come $MSE(K) = \displaystyle\sum_{j=1}^{k}\sum_{i=1}^{n}\delta(x_i, j) ||x_i-c_j||_2$. A parole possiamo
+        esprimere come, la somma per ogni cluster, per ogni punto, con delta di Dirac per esprimere l'appartenenza o meno 
+        del punto al cluster, per la distanza tra il punto e il centro del cluster.
+
+        Questo approccio da problemi nel momento in cui cerchiamo di trovare il punti di Scree quando andiamo ad aumentare il numero
+        di cluster.
+
+        Una prima soluzione è il Rate Distorsion Approac $J(k) = \[MSE(k)\]^{-\frac{d}{2}} - \[MSE(k-1)\]^{-\frac{d}{2}}$. \newline
+        Questa formula evidenzia le differenze tra i salti, quindi il valore maggiore ottenuto indica il salto maggiore, quindi
+        il numero di clusters ottimale.
+
+    \subsubsection{MSE - Decomposition}
+    Un altro approccio è quello di vedere quale sia la varianza totale del dataset. Troviamo quindi due funzioni dei clusters.
+
+    $SSW = MSE = \displaystyle\sum_{j=1}^{k}\sum_{i=1}^{n}\delta(x_i, j) ||x_i-c_j||_2$ 
+    
+    $SSB = \displaystyle\sum_{j=1}^{k} n_k ||\bar{x}-c_j||_2$ dove $\bar{x}$ è la media di tutto il dataset e $n_k$ è il 
+    numero di punti per ogni cluster.
+    
+    Definamo la varianza del dataset come $\sigma^2 = SSW + SSB$. Questa, può essere minimizzata, ma se riduciamo 
+    $SSW$ dobbiamo necessariamente alzare $SSB$. 
+
+    Con queste formule possiamo trovare un altro parametro del clustering $F=\frac{K\cdot SSW}{SSB}$ che più è alto meglio è.
+    \subsubsection{Silhouette Coeficient}
+        definiamo:
+        \begin{itemize}
+            \item \b{Distanza interclasse a(x)}: la distanza tra il punto e tutti gli altri punti del cluster.
+            \item \b{Distanza intraclasse b(x)}: la minima distanza tra il punto e tutti i punti degli altri cluster.
+        \end{itemize}
+        La Silhouette sarà $\frac{b(x) - a(x)}{max(a, b)}$
+
+\chapter{Reinforcement Learning}
+
+Ricordate che KNN è una felce. Adesso la usiamo per pulirci il culo ma se non ci fosse stata lei non esisterebbe nulla di
+quello che conosciamo.
+
+\end{document}
